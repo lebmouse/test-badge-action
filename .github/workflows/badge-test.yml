@@ -37,7 +37,7 @@ jobs:
       - name: Upload APP_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: "$APP"
+          name: ${{ github.event.inputs.appName }}
           path: APP.txt
 
       - shell: bash
@@ -45,5 +45,5 @@ jobs:
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: "$STAGE"
+          name: ${{ github.event.inputs.appName }}
           path: STAGE.txt
