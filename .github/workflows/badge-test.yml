@@ -29,21 +29,21 @@ env:
 
 jobs:
   artifact_upload:
-    name: Add 3 and 7
+    name: upload-artifact
     runs-on: ubuntu-latest
     steps:
       - shell: bash
-        run: |
-          echo $APP >> APP_NAME.text
-          echo $STAGE >> STAGE_NAME.txt
+        run: echo >> APP.txt
       - name: Upload APP_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: APP_NAME
-          path: APP_NAME.text
+          name: "$APP"
+          path: APP.txt
 
+      - shell: bash
+        run: echo >> STAGE.txt
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: STAGE_NAME
-          path: STAGE_NAME.text
+          name: "$STAGE"
+          path: STAGE.txt
