@@ -1,0 +1,42 @@
+name: Deploy App
+
+on:
+  workflow_dispatch:
+    inputs:
+      appName:
+        description: 'App Name(package.json 참조)'
+        required: true
+        type: choice
+        options:
+          - epick
+          - collection-detail
+          - storepick
+          - store-pick-banner
+          - benefit
+      stage:
+        description: 'Stage Name'
+        required: true
+        type: choice
+        default: alpha
+        options:
+          - alpha
+          - beta
+          - production
+
+env:
+  APP: ${{ github.event.inputs.appName }}
+  STAGE: ${{ github.event.inputs.stage }}
+
+jobs:
+  badge_job:
+    name: badge
+    runs-on: ubuntu-18.04
+    steps:
+      - name: App badge
+        uses: RubbaBoy/BYOB@v1.2.1
+        with:
+          NAME: APP
+          LABEL: $APP
+          STATUS: $STAGE
+          COLOR: blue
+          GITHUB_TOKEN: ${{ secrets.REPO_SECRET }}
