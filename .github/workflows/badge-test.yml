@@ -45,5 +45,5 @@ jobs:
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.event.inputs.appName }}
+          name: ${{ github.event.inputs.stage }}
           path: STAGE.txt
