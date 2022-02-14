@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       appName:
-        description: 'App Name(package.json 참조)'
+        description: "App Name(package.json 참조)"
         required: true
         type: choice
         options:
@@ -14,7 +14,7 @@ on:
           - store-pick-banner
           - benefit
       stage:
-        description: 'Stage Name'
+        description: "Stage Name"
         required: true
         type: choice
         default: alpha
@@ -28,15 +28,22 @@ env:
   STAGE: ${{ github.event.inputs.stage }}
 
 jobs:
-  badge_job:
-    name: badge
-    runs-on: ubuntu-18.04
+  artifact_upload:
+    name: Add 3 and 7
+    runs-on: ubuntu-latest
     steps:
-      - name: App badge
-        uses: RubbaBoy/BYOB@v1.2.1
+      - shell: bash
+        run: |
+          echo $APP >> APP_NAME.text
+          echo $STAGE >> STAGE_NAME.txt
+      - name: Upload APP_NAME
+        uses: actions/upload-artifact@v2
         with:
-          NAME: APP
-          LABEL: $APP
-          STATUS: $STAGE
-          COLOR: blue
-          GITHUB_TOKEN: ${{ secrets.REPO_SECRET }}
+          name: APP_NAME
+          path: APP_NAME.text
+
+      - name: Upload STAGE_NAME
+        uses: actions/upload-artifact@v2
+        with:
+          name: STAGE_NAME
+          path: STAGE_NAME.text
