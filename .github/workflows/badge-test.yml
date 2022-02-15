@@ -32,8 +32,8 @@ on:
           - production
 
 env:
-  APP: ${{ github.event.inputs.appName }}
-  STAGE: ${{ github.event.inputs.stage }}
+  APP: ${{ inputs.appName || github.event.inputs.appName }}
+  STAGE: ${{ inputs.appName || github.event.inputs.stage }}
 
 jobs:
   artifact_upload:
@@ -45,12 +45,12 @@ jobs:
       - name: Upload APP_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.event.inputs.appName }}
+          name: $APP
           path: APP.txt
       - shell: bash
         run: echo >> STAGE.txt
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ github.event.inputs.stage }}
+          name: $STAGE
           path: STAGE.txt
