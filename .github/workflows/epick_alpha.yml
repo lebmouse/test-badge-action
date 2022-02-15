@@ -5,13 +5,7 @@ on:
 
 jobs:
   test:
-    name: test
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - uses: lebmouse/test-badge-action/.github/workflows/badge-test.yml@master
-        with:
-          appName: epick
-          stage: alpha
+    uses: lebmouse/test-badge-action/.github/workflows/badge-test.yml@master
+    with:
+      appName: epick
+      stage: alpha
