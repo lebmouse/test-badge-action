@@ -1,4 +1,4 @@
-name: collection-detail beta
+name: collection-detail
 
 on:
   workflow_dispatch:
@@ -11,7 +11,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - uses: ./.github/workflows/badge-test.yml
+      - uses: lebmouse/test-badge-action/.github/workflows/badge-test.yml@master
         with:
           appName: collection-detail
           stage: beta
