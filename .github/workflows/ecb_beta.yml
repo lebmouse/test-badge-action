@@ -1,0 +1,14 @@
+name: collection-detail beta
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: test
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: ./.github/workflows/badge-test.yml
+        with:
+          appName: collection-detail
+          stage: beta

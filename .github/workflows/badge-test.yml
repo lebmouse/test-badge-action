@@ -1,6 +1,7 @@
 name: Deploy App $APP $STAGE
 
 on:
+  workflow_call:
   workflow_dispatch:
     inputs:
       appName:
