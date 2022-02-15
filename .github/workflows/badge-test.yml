@@ -3,12 +3,12 @@ name: Deploy App $APP $STAGE
 on:
   workflow_call:
     inputs:
-        appName:
-          required: true
-          type: string
-        stage:
-          required: true
-          type: string
+      appName:
+        required: true
+        type: string
+      stage:
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       appName:
@@ -32,8 +32,8 @@ on:
           - production
 
 env:
-  APP: ${{ inputs.appName || github.event.inputs.appName }}
-  STAGE: ${{ inputs.appName || github.event.inputs.stage }}
+  APP: ${{ github.event.inputs.appName }}
+  STAGE: ${{ github.event.inputs.stage }}
 
 jobs:
   artifact_upload:
@@ -45,12 +45,12 @@ jobs:
       - name: Upload APP_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: "$APP"
+          name: ${{env.App}}
           path: APP.txt
       - shell: bash
         run: echo >> STAGE.txt
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: "$STAGE"
+          name: ${{env.STAGE}}
           path: STAGE.txt
