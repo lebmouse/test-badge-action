@@ -45,12 +45,12 @@ jobs:
       - name: Upload APP_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: $APP
+          name: "$APP"
           path: APP.txt
       - shell: bash
         run: echo >> STAGE.txt
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: $STAGE
+          name: "$STAGE"
           path: STAGE.txt
