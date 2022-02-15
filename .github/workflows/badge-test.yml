@@ -40,7 +40,6 @@ jobs:
         with:
           name: ${{ github.event.inputs.appName }}
           path: APP.txt
-
       - shell: bash
         run: echo >> STAGE.txt
       - name: Upload STAGE_NAME
