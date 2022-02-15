@@ -45,12 +45,12 @@ jobs:
       - name: Upload APP_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: ${{env.App}}
+          name: ${{ inputs.appName }}
           path: APP.txt
       - shell: bash
         run: echo >> STAGE.txt
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: ${{env.STAGE}}
+          name: ${{ inputs.appName }}
           path: STAGE.txt
