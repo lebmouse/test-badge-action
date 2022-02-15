@@ -31,10 +31,6 @@ on:
           - beta
           - production
 
-env:
-  APP: ${{ github.event.inputs.appName }}
-  STAGE: ${{ github.event.inputs.stage }}
-
 jobs:
   artifact_upload:
     name: upload-artifact
@@ -45,12 +41,12 @@ jobs:
       - name: Upload APP_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ inputs.appName }}
+          name: ${{ inputs.appName || github.event.inputs.appName }}
           path: APP.txt
       - shell: bash
         run: echo >> STAGE.txt
       - name: Upload STAGE_NAME
         uses: actions/upload-artifact@v2
         with:
-          name: ${{ inputs.appName }}
+          name: ${{ inputs.appName || github.event.inputs.appName }}
           path: STAGE.txt
